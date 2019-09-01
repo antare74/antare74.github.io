@@ -7,6 +7,55 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Hello World!</h1>
+<div class="container mt-5">
+    <h1>Membuat Project Laravel</h1>
+    <p>Anda dapat meletakkan Folder Project di manapun, disini saya akan memasukkan Project saya di <b class="border p-2"> Document/namaProject</b>
+    jadi saya jalankan perintah
+    <b class="border p-2">cd /Document/namaProject</b></p>
+    
+    <p>Karena posisi kita sedang pada direktori <b class="border p-2"> Document/namaProject</b> maka langsung kita eksekusi saja projectnya.</p><p> Untuk mengantisipasi terjadinya corrupt file, pakai perintah dibawah ini untuk membuat project:</p>
+    <p class="border mx-2 p-2">
+        composer create-project --prefer-dist laravel/laravel namaProject
+    </p>
+    <h1>Server Lokal</h1>
+    <p>Untuk menjalankan laravel anda dapat menggunakan local server degan mengetikan <b class="border p-2">php-artisan serve</b> pada direktori anda membuat "Project" laravel tadi, contoh:</p>
+        buka cmd lalu:
+        
+        <p class="border mx-2 p-2">
+            cd /home/Documents/namaProject
+        </p>
+        output
+        <p class="border p-2 mx-2">
+            Laravel development server started: 127.0.0.1:8000 
+        </p>
+        lalu copy <b class="border p-2">127.0.0.1:8000</b> dan buka pada browser anda.
+</div>
+<br>
+<div class="catatan ml-5">
+    <h4>NOTE!</h4>
+    <p>Jika ada file corrupt atau kendala saat installasi laravel, ikuti langkah dibawah:</p>
+    <ol>
+       <li><p>Install package php zip</p>
+           <p><b class="border mx-2 p-2">sudo apt-get install php7.2-zip</b></p>
+            <p>lalu coba buat proect baru kembali, tetapi apabila masih terdapat error maka anda perlu menginstall packagenya satu demi satu.</p>
+        </li>
+        <li><p>Ikuti langkah dibawah ini:</p>
+            <p><b class="border mx-2 p-2">sudo apt-get install BCMath7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install Extension7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install JSON7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install Mbstring7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install OpenSSL7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install PDO7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install Tokenizer7.2-zip</b></p>
+            <p><b class="border mx-2 p-2">sudo apt-get install XML7.2-zip</b></p>
+            <p>Lalu buat project anda kembali, semoga tidak ada yang error :)</p>
+        </li>
+    </ol>
+</div>
+
+<h3 class="footer ml-5 my-5">
+    <a class="footer-button p-3" href="https://antare74.github.io/">Back to Home</a>|
+    <a href="3-mvc.htmls">Next</a>
+</h3>
 </body>
 </html>
