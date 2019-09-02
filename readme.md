@@ -1,4 +1,4 @@
-#### [About Me](https://github.com/antare74) | Contact: mail@example.com |
+#### [About Me](https://github.com/antare74) | Contact: mail@example.com
 
 
 ## Belajar Laravel 5.8 di Linux
