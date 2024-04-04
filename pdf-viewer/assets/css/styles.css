@@ -1,0 +1,8 @@
+/* Custom Styles */
+#pdf-render {
+    border: 1px solid #cbd5e0;
+}
+#selection-box {
+    border: 2px solid #3b82f6;
+    background-color: rgba(59, 130, 246, 0.3);
+}
