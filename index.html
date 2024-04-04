@@ -4,65 +4,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>GitHub Portfolio</title>
+    <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Include custom CSS -->
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
 
     <!-- Navigation -->
-    <nav class="flex justify-between items-center bg-white shadow-md py-4 px-6">
-        <div>
-            <h1 class="text-xl font-semibold">My Portfolio</h1>
-        </div>
-        <div>
-            <ul class="flex space-x-4">
-                <li><a href="#projects" class="text-gray-600 hover:text-gray-800">Projects</a></li>
-                <li><a href="#social" class="text-gray-600 hover:text-gray-800">Social</a></li>
-                <li><a href="#contact" class="text-gray-600 hover:text-gray-800">Contact</a></li>
+    <nav class="bg-blue-500 text-white py-4 fixed top-0 w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="font-semibold text-xl">GitHub Profile</span>
+            <button id="nav-toggle" class="block md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <ul id="nav-menu" class="hidden md:flex md:space-x-4">
+                <li><a href="#about" class="hover:text-gray-300">About</a></li>
+                <li><a href="#portfolio" class="hover:text-gray-300">Portfolio</a></li>
+                <li><a href="#gists" class="hover:text-gray-300">Gists</a></li>
+                <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-12 px-6 bg-gradient-to-r from-teal-400 to-blue-500">
-        <h2 class="text-3xl font-semibold mb-4 text-white">My Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Replace these with your projects -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold mb-2">Project 1</h3>
-                <p class="text-gray-600">Description of Project 1.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold mb-2">Project 2</h3>
-                <p class="text-gray-600">Description of Project 2.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold mb-2">Project 3</h3>
-                <p class="text-gray-600">Description of Project 3.</p>
+    <!-- Hero Section -->
+    <section class="bg-blue-500 text-white py-20 px-4">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4">Hello, I'm Your Name</h1>
+            <p class="text-lg">I'm a passionate <span class="text-yellow-500">developer/designer</span> ready to
+                take on new challenges.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-4">About Me</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <img id="profile-image" src="" alt="Your Name" class="rounded-full w-40 h-40 object-cover mx-auto">
+                </div>
+                <div>
+                    <p id="bio" class="text-lg bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut risus vel
+                        metus malesuada feugiat.</p>
+                    <p class="text-lg"><i class="fas fa-user text-yellow-500 mr-2"></i><span id="name">Your Name</span> (<span id="username">Username</span>)</p>
+                    <p class="text-lg"><i class="fas fa-users text-yellow-500 mr-2"></i>Followers: <span id="followers">0</span></p>
+                    <p class="text-lg"><i class="fas fa-star text-yellow-500 mr-2"></i>Stars: <span id="stars">0</span></p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Social Section -->
-    <section id="social" class="py-12 px-6 bg-gradient-to-r from-pink-400 to-purple-500">
-        <h2 class="text-3xl font-semibold mb-4 text-white">Social</h2>
-        <div class="flex space-x-4">
-            <!-- Replace these with your social media links -->
-            <a href="#" class="text-white hover:text-gray-100"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-white hover:text-gray-100"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="text-white hover:text-gray-100"><i class="fab fa-github"></i></a>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-4">GitHub Repositories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="repo-list">
+                <!-- GitHub repositories will be populated dynamically with JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gists Section -->
+    <section id="gists" class="bg-blue-500 text-white py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-4">Gists</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gist-list">
+                <!-- Gists will be populated dynamically with JavaScript -->
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 px-6 bg-gradient-to-r from-yellow-400 to-orange-500">
-        <h2 class="text-3xl font-semibold mb-4 text-white">Contact</h2>
-        <p class="text-white">Feel free to reach out to me at myemail@example.com</p>
+    <section id="contact" class="bg-blue-500 text-white py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
+            <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <label for="name" class="block mb-2 text-gray-900">Name</label>
+                    <input type="text" id="name" name="name" class="w-full bg-gray-200 text-gray-900 px-4 py-2 rounded">
+                </div>
+                <div>
+                    <label for="email" class="block mb-2 text-gray-900">Email</label>
+                    <input type="email" id="email" name="email" class="w-full bg-gray-200 text-gray-900 px-4 py-2 rounded">
+                </div>
+                <div class="col-span-2">
+                    <label for="message" class="block mb-2 text-gray-900">Message</label>
+                    <textarea id="message" name="message" rows="4"
+                        class="w-full bg-gray-200 text-gray-900 px-4 py-2 rounded"></textarea>
+                </div>
+                <div class="col-span-2">
+                    <button type="submit"
+                        class="bg-yellow-500 text-white py-2 px-6 rounded hover:bg-yellow-600">Send
+                        Message</button>
+                </div>
+            </form>
+        </div>
     </section>
 
+    <!-- Footer Section -->
+    <footer class="bg-blue-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <!-- Social Media Links -->
+            <div class="mt-4">
+                <!-- Example: -->
+                <!-- <a href="#" class="text-white hover:text-gray-300 mx-2"><i class="fab fa-twitter"></i></a> -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include JavaScript -->
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            document.getElementById('nav-menu').classList.toggle('hidden');
+        });
+
+        // Fetch data from GitHub API and populate repository section
+        fetch('https://api.github.com/users/antare74/repos')
+            .then(response => response.json())
+            .then(data => {
+                const repoContainer = document.getElementById('repo-list');
+
+                data.forEach(repo => {
+                    const repoCard = document.createElement('div');
+                    repoCard.className = 'bg-white p-6 rounded shadow-md text-black';
+
+                    const repoName = document.createElement('h3');
+                    repoName.className = 'text-xl font-semibold mb-2';
+                    const repoLink = document.createElement('a');
+                    repoLink.href = repo.html_url;
+                    repoLink.textContent = repo.name;
+                    repoName.appendChild(repoLink);
+                    repoCard.appendChild(repoName);
+
+                    const repoDescription = document.createElement('p');
+                    repoDescription.className = 'text-gray-700';
+                    repoDescription.textContent = repo.description || 'No description available.';
+                    repoCard.appendChild(repoDescription);
+
+                    repoContainer.appendChild(repoCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching repository data:', error);
+            });
+
+        // Fetch data from GitHub Gist API and populate gist section
+        fetch('https://api.github.com/users/antare74/gists')
+            .then(response => response.json())
+            .then(data => {
+                const gistContainer = document.getElementById('gist-list');
+
+                data.forEach(gist => {
+                    const gistCard = document.createElement('div');
+                    gistCard.className = 'bg-white p-6 rounded shadow-md text-black';
+
+                    const gistName = document.createElement('h3');
+                    gistName.className = 'text-xl font-semibold mb-2';
+                    const gistLink = document.createElement('a');
+                    gistLink.href = gist.html_url;
+                    gistLink.textContent = gist.description || 'Untitled';
+                    gistName.appendChild(gistLink);
+                    gistCard.appendChild(gistName);
+
+                    const gistFiles = document.createElement('ul');
+                    Object.keys(gist.files).forEach(fileName => {
+                        const fileItem = document.createElement('li');
+                        fileItem.textContent = fileName;
+                        gistFiles.appendChild(fileItem);
+                    });
+                    gistCard.appendChild(gistFiles);
+
+                    gistContainer.appendChild(gistCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching gist data:', error);
+            });
+
+        // Fetch data from GitHub API to get profile information
+        fetch('https://api.github.com/users/antare74')
+            .then(response => response.json())
+            .then(user => {
+                const profileImage = document.getElementById('profile-image');
+                profileImage.src = user.avatar_url;
+                profileImage.alt = user.login;
+
+                const name = document.getElementById('name');
+                name.textContent = user.name || user.login;
+
+                const username = document.getElementById('username');
+                username.textContent = user.login;
+
+                const bio = document.getElementById('bio');
+                bio.textContent = user.bio || 'No bio available.';
+
+                const followers = document.getElementById('followers');
+                followers.textContent = user.followers || '0';
+
+                const stars = document.getElementById('stars');
+                fetch(`https://api.github.com/users/antare74/starred`)
+                    .then(response => response.json())
+                    .then(starredRepos => {
+                        stars.textContent = starredRepos.length || '0';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching starred repos:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error fetching profile data:', error);
+            });
+    </script>
 </body>
 
 </html>
