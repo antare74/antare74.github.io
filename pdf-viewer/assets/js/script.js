@@ -5,10 +5,11 @@ const prevButton = document.getElementById('prev-page');
 const nextButton = document.getElementById('next-page');
 const canvas = document.getElementById('pdf-render');
 const context = canvas.getContext('2d');
+const coordinatesDisplay = document.getElementById('coordinates-info'); // New element to display coordinates
 
 // Variables for selection
 let isSelecting = false;
-let startX, startY, endX, endY;
+let lowerLeftX, lowerLeftY, upperRightX, upperRightY;
 let pdfDocument;
 let currentPage = 1;
 
@@ -116,17 +117,18 @@ function renderPage(pageNumber) {
 // Function to start selection
 function startSelection(event) {
     isSelecting = true;
-    startX = event.offsetX;
-    startY = event.offsetY;
+    lowerLeftX = event.offsetX;
+    lowerLeftY = event.offsetY;
 }
 
 // Function to track selection
 function trackSelection(event) {
     if (isSelecting) {
-        endX = event.offsetX;
-        endY = event.offsetY;
+        upperRightX = event.offsetX;
+        upperRightY = event.offsetY;
 
         updateSelectionBox();
+        updateCoordinatesDisplay(); // Update coordinates display
     }
 }
 
@@ -135,18 +137,43 @@ function endSelection(event) {
     isSelecting = false;
 
     // Print the coordinates of the selection
-    console.log(`Selection Coordinates: (${startX}, ${startY}) - (${endX}, ${endY})`);
+    console.log(`Selection Coordinates: (${lowerLeftX}, ${lowerLeftY}) - (${upperRightX}, ${upperRightY})`);
 }
 
 // Function to update selection box
 function updateSelectionBox() {
-    let minX = Math.min(startX, endX);
-    let minY = Math.min(startY, endY);
-    let width = Math.abs(startX - endX);
-    let height = Math.abs(startY - endY);
+    let minX = Math.min(lowerLeftX, upperRightX);
+    let minY = Math.min(lowerLeftY, upperRightY);
+    let width = Math.abs(lowerLeftX - upperRightX);
+    let height = Math.abs(lowerLeftY - upperRightY);
 
     selectionBox.style.left = minX + 'px';
     selectionBox.style.top = minY + 'px';
     selectionBox.style.width = width + 'px';
     selectionBox.style.height = height + 'px';
 }
+
+// Function to update coordinates display
+function updateCoordinatesDisplay() {
+    coordinatesDisplay.textContent = `lowerLeftX: ${lowerLeftX}, lowerLeftY: ${lowerLeftY}, upperRightX: ${upperRightX}, upperRightY: ${upperRightY}`;
+}
+
+// Copy button functionality
+document.getElementById("copy-coordinates").addEventListener("click", function() {
+    var coordinates = document.getElementById("coordinates-info").innerText;
+    navigator.clipboard.writeText(coordinates).then(function() {
+        alert("Coordinates copied to clipboard!");
+    }, function() {
+        alert("Failed to copy coordinates!");
+    });
+});
+
+// Change cursor to selection icon when hovering over the PDF viewer
+var pdfContainer = document.getElementById("pdf-container");
+pdfContainer.addEventListener("mouseover", function() {
+    pdfContainer.style.cursor = "crosshair";
+});
+
+pdfContainer.addEventListener("mouseout", function() {
+    pdfContainer.style.cursor = "default";
+});

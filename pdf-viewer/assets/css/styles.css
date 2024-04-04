@@ -6,3 +6,15 @@
     border: 2px solid #3b82f6;
     background-color: rgba(59, 130, 246, 0.3);
 }
+
+/* Google standard button color */
+.btn-google {
+    background-color: #4285F4;
+    color: #fff;
+    padding: 0.5rem 1rem; /* Adjust button size */
+}
+
+/* Google standard button hover color */
+.btn-google:hover {
+    background-color: #357AE8;
+}

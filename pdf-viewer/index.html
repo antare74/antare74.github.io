@@ -3,30 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Coordinate Viewer</title>
+    <title>Aris W. - PDF Coordinate Viewer</title>
+    <!-- External Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="container mx-auto p-6">
-        <h1 class="text-3xl text-center mb-8">PDF Coordinate Viewer</h1>
-        <div class="flex justify-center items-center">
-            <div class="w-4/5 border rounded-lg overflow-hidden mr-8 relative">
-                <canvas id="pdf-render" class="w-full"></canvas>
-                <div id="selection-box" class="absolute pointer-events-none"></div>
-            </div>
-            <div class="w-1/5">
-                <label for="pdf-upload" class="block mb-2 font-medium">Upload PDF:</label>
-                <input type="file" id="pdf-upload" accept=".pdf" class="mb-4 block">
-                <label for="page-selection" class="block mb-2 font-medium">Select Page:</label>
-                <select id="page-selection" class="mb-4 block"></select>
-                <div class="flex justify-between">
-                    <button id="prev-page" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Previous</button>
-                    <button id="next-page" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Next</button>
+<body class="bg-gray-100 font-sans flex items-center justify-center">
+    <div class="container mx-auto p-6 pt-0">
+        <div class="sticky top-0 p-3 z-10 mb-4 border bg-white">
+            <!-- Top Menu Section -->
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl">
+                    PDF Coordinate Viewer
+                </h1>
+                <a href="https://github.com/antare74" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.206 11.386.6.11.793-.26.793-.577 0-.285-.01-1.23-.015-2.23-3.338.723-4.042-1.61-4.042-1.61-.546-1.383-1.333-1.75-1.333-1.75-1.09-.745.083-.73.083-.73 1.206.085 1.84 1.24 1.84 1.24 1.07 1.836 2.809 1.305 3.49.998.108-.78.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.124-.303-.54-1.524.12-3.176 0 0 1.008-.322 3.3 1.23a11.478 11.478 0 0 1 3-.39c1.017.003 2.042.136 3 .39 2.29-1.552 3.296-1.23 3.296-1.23.66 1.652.244 2.873.12 3.176.77.84 1.23 1.91 1.23 3.22 0 4.608-2.805 5.625-5.475 5.92.43.37.81 1.096.81 2.21 0 1.598-.015 2.883-.015 3.278 0 .32.192.692.8.574C20.572 21.798 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <div class="flex items-center space-x-2">
+                    <label for="pdf-upload" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6m0 0a2 2 0 002 2h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2z" />
+                        </svg>
+                        <input type="file" id="pdf-upload" accept=".pdf" class="hidden">
+                    </label>
+                    <select id="page-selection" class="px-4 py-2 border rounded-lg"></select>
+                    <button id="prev-page" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="next-page" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
                 </div>
+            </div>
+            <!-- Coordinates Display -->
+            <div class="flex justify-center items-center bg-gray-200 px-4 py-2 rounded-lg mt-4">
+                <p class="text-gray-700 mr-4">Coordinates: <span id="coordinates-info">-</span></p>
+                <button id="copy-coordinates" class="flex items-center px-3 py-1 bg-green-500 rounded hover:bg-green-600 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H4zm1 2h8a1 1 0 011 1v10a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zm8 1H5v10h8V6z" clip-rule="evenodd" />
+                    </svg>
+                    Copy
+                </button>
+            </div>
+        </div>
+        <!-- PDF Viewer Section -->
+        <div class="max-h-[calc(100vh-220px)] overflow-y-auto flex items-center justify-center">
+            <div id="pdf-container" class="border rounded-lg overflow-hidden relative">
+                <canvas id="pdf-render"></canvas>
+                <!-- Selection Box for Coordinates -->
+                <div id="selection-box" class="absolute pointer-events-none border border-blue-500"></div>
             </div>
         </div>
     </div>
+    <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.280/pdf.min.js"></script>
     <script src="./assets/js/build/pdf.js"></script>
     <script src="./assets/js/script.js"></script>
